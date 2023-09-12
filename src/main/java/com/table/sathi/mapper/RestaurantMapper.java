@@ -23,5 +23,6 @@ public class RestaurantMapper {
                 .restroActiveTiming(restaurantInfoRequest.getRestroActiveTiming())
                 .lastUpdatedTs( LocalDateTime.now())
                 .build();
+        //test
     }
 }
