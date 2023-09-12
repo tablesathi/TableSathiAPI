@@ -1,0 +1,22 @@
+spring:
+  data:
+    mongodb:
+      #      uri : mongodb+srv://gaurav:8ThmP20WRCzSCHDH@techspace.vtbqdvt.mongodb.net/test?authMechanism=SCRAM-SHA-1&authSource=Ecom
+      uri : mongodb+srv://tablesathi:gaurav123@cluster0.jemizuy.mongodb.net/?retryWrites=true&w=majority
+      database : sample_mflix
+      auto-index-creation : true
+
+
+security:
+  jwt:
+    token:
+      secret-key: secret-key
+      expire-length: 172800000 # 5 minutes duration by default: 5 minutes * 60 seconds * 1000 miliseconds
+
+# Enable all Actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
