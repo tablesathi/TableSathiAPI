@@ -5,8 +5,13 @@ spring:
       uri : mongodb+srv://tablesathi:gaurav123@cluster0.jemizuy.mongodb.net/?retryWrites=true&w=majority
       database : sample_mflix
       auto-index-creation : true
+  cache:
+    type: caffeine
 
-
+  caffeine:
+    spec:
+      maximumSize: 1000
+      expireAfterAccess: 60s
 security:
   jwt:
     token:

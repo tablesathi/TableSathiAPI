@@ -5,13 +5,8 @@ import com.table.sathi.dao.RestaurantInfoRequest;
 import com.table.sathi.model.menu.RestaurantInfo;
 import com.table.sathi.service.RestaurantInfoService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -36,8 +31,7 @@ public class RestaurantInfoController implements RestaurantInfoControllerApi {
     @Override
     @RequestMapping(method = RequestMethod.POST,path = "",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RestaurantInfo> createUpdateRestaurant(@RequestBody RestaurantInfoRequest restaurantInfoRequest) {
-
-       return ResponseEntity.ok(restaurantInfoService.createUpdateResturant(restaurantInfoRequest));
+       return ResponseEntity.ok(restaurantInfoService.createUpdateResturant(restaurantInfoRequest,restaurantInfoRequest.getId()));
     }
     @RequestMapping(method = RequestMethod.GET,path = "/{resturentId}",consumes = MediaType.ALL_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
@@ -48,5 +42,11 @@ public class RestaurantInfoController implements RestaurantInfoControllerApi {
             return ResponseEntity.ok(restaurantInfo.get());
         }
         else return ResponseEntity.notFound().build();
+    }
+    @RequestMapping(method = RequestMethod.DELETE,path = "/{resturentId}",consumes = MediaType.ALL_VALUE)
+    @Override
+    public ResponseEntity<Void> deleteRestaurant(@PathVariable String resturentId) {
+        restaurantInfoService.deleteResturent(resturentId);
+       return ResponseEntity.noContent().build();
     }
 }
